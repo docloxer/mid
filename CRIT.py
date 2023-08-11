@@ -248,7 +248,7 @@ def jalan(keliling):
 		sys.stdout.write(mau)
 		sys.stdout.flush();sleep(0.03) 
 
-def Banner___Gua__Ngab():
+def mid():
 	try:clear()
 	except:pass
 	try:os.popen('play-audio data/sound/play.mp3')
@@ -483,7 +483,7 @@ class instagram:
 				following=i.split('|')[2]
 			except:
 				pass
-			Banner___Gua__Ngab()
+			mid()
 			self.mentod()
 			prints(Panel(f"{H2}{IP}",title=f"{P2}IP",subtitle=f"{P2}{CN}",width=80,padding=(0,30),style=f"#FFFFFF"))
 			prints(Panel(f"""
@@ -1310,7 +1310,7 @@ def lisensi():
   cetak(nel('\t[green] SELAMAT LISENSI ANDA VALID[/green]'))
   time.sleep(2)
   lisensiku.append("sukses")
-  ggwp17()
+  docloxer()
  elif status ==KeyError:
   os.system('rm .lisen.txt')
  else:
@@ -1364,7 +1364,7 @@ nyMxD = 10
 current_GMT = time.gmtime(time.time())
 
 def key():
-	os.system("clear");Banner___Gua__Ngab();key = input(f" {K}#{P} masukan lisensi : {H}")
+	os.system("clear");mid();key = input(f" {K}#{P} masukan lisensi : {H}")
 	try:ses = requests.Session();asu = ses.get("https://app.cryptolens.io/api/key/Activate?token===&ProductId=17890&Key=%s&Sign=True"%(key)).json()['licenseKey']['key'];open("data/lisensi.txt","w").write(key);prints(Panel(f"{P2}selamat lisensi yang anda masukan terdaftar ke server Insta Nazri XD",width=80,padding=(0,6),style=f"{color_table}"));time.sleep(4);ggwp17()
 	except KeyError:
 		prints(Panel(f"{P2}lisensi kamu sudah kedaluwarsa silahkan beli lisensi ke admin",width=80,padding=(0,6),style=f"{color_table}"));os.system("rm -rf data/lisensi.txt");os.system("xdg-open https://wa.me/+6281221523195?text=assalamualaikum+bang+mau+beli+lisensi+crack+Instagram");time.sleep(2);exit()
@@ -1380,7 +1380,7 @@ def cek():
 ###----------[ MASUK LISENSI ]---------- ###
 def key():
 	os.system("clear") 
-	Banner___Gua__Ngab()
+	mid()
 	prints(Panel(f"{P2}silahkan masukan lisensi tools agar bisa masuk ke tools Insta Nazri XD\njika anda belum mempunyai lisensi ketik {H2}beli {P2}untuk melihat harga lisensi"))
 	key = input(f"{P}[{B}?{P}] masukan lisensi : {H}")
 	if key in ["beli","Beli","BELI"]:beli_bang()
