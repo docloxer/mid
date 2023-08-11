@@ -121,7 +121,7 @@ d = "[#87afff]"
 e = "[#87ff00]"
 R3 = random.choice([a, b, c, d, e])
 
-USN = "Mozilla/5.0 (iPhone; CPU iPhone OS 11_1_1 like Mac OS X) AppleWebKit/604.3.5 (KHTML, like Gecko) Mobile/15B150 Instagram 32.0.0.14.97 (iPhone10,6; iOS 11_1_1; ru_UA; ru-UA; scale=3.00; gamut=wide; 1125x2436)"
+ua_ig = "Mozilla/5.0 (iPhone; CPU iPhone OS 11_1_1 like Mac OS X) AppleWebKit/604.3.5 (KHTML, like Gecko) Mobile/15B150 Instagram 32.0.0.14.97 (iPhone10,6; iOS 11_1_1; ru_UA; ru-UA; scale=3.00; gamut=wide; 1125x2436)"
 
 internal,external,success,checkpoint,loop,following,lisensikuni,lisensiku=[],[],[],[],0,[],[],[]
 HARIS, HARIS1, method, ugen, ugen3, ugen2, baru, zx, prox, menudump, uazpepek = {}, {}, [], [], [], [], [], [], [], [], []
@@ -280,7 +280,7 @@ def cekAPI(cookie):
     user=open('data/user.txt','r').read()
     coki = open('data/cookie.txt','r').read()
     try:
-        c=s.get("https://i.instagram.com/api/v1/users/web_profile_info/?username=%s"%(user),cookies={'cookie':coki},headers={"user-agent":USN,"x-ig-app-id":'936619743392459'})
+        c=s.get("https://i.instagram.com/api/v1/users/web_profile_info/?username=%s"%(user),cookies={'cookie':coki},headers={"user-agent":ua_ig,"x-ig-app-id":'936619743392459'})
         i=c.json()["data"]["user"]
         nama=i["full_name"]
         followers=i["edge_followed_by"]["count"]
@@ -564,14 +564,14 @@ class instagram:
 
 	def unfollowAPI(self,user_id,username_id,cookie):
 		uuid=generateUUID(True)
-		xx=self.s.get("https://www.instagram.com/",headers={"user-agent":USN}).content
+		xx=self.s.get("https://www.instagram.com/",headers={"user-agent":ua_ig}).content
 		crf_token = re.findall('{"config":{"csrf_token":"(.*)","viewer"',str(xx))[0]
 		s.headers.update({'Connection': 'close',
                        'Accept': '*/*',
                        'Content-type': 'application/x-www-form-urlencoded; charset=UTF-8',
                        'Cookie2': '$Version=1',
                        'Accept-Language': 'en-US',
-                       'User-Agent': USN})
+                       'User-Agent': ua_ig})
 
 		data = json.dumps({'_uuid': uuid,
                            '_uid': username_id,
@@ -587,7 +587,7 @@ class instagram:
 	def searchAPI(self,cookie,nama):
 		try:
 			for ba in range(100):
-				x=s.get('https://www.instagram.com/web/search/topsearch/?count=100000&context=blended&query=%s&rank_token=0.21663777590422106&include_reel=true'%(nama),cookies=cookie,headers={"user-agent":USN})
+				x=s.get('https://www.instagram.com/web/search/topsearch/?count=100000&context=blended&query=%s&rank_token=0.21663777590422106&include_reel=true'%(nama),cookies=cookie,headers={"user-agent":ua_ig})
 				x_jason=json.loads(x.text)
 				try:
 					for i in x_jason['users']:
@@ -615,7 +615,7 @@ class instagram:
 	def idAPI(self,cookie,id):
 		if 'sukses' in lisensiku:
 			try:
-				m=s.get("https://i.instagram.com/api/v1/users/web_profile_info/?username=%s"%(id),cookies=cookie,headers={"user-agent":USN,"x-ig-app-id":'936619743392459'})
+				m=s.get("https://i.instagram.com/api/v1/users/web_profile_info/?username=%s"%(id),cookies=cookie,headers={"user-agent":ua_ig,"x-ig-app-id":'936619743392459'})
 				m_jason=m.json()["data"]["user"]
 				idx=m_jason["id"]
 			except requests.exceptions.ConnectionError:
@@ -633,7 +633,7 @@ class instagram:
 	def infoAPI(self,cookie,api,id):
 		if 'sukses' in  lisensiku:
 			try:
-				x=s.get(api%(id),cookies=cookie,headers={"user-agent":USN})
+				x=s.get(api%(id),cookies=cookie,headers={"user-agent":ua_ig})
 				x_jason=json.loads(x.text)
 				for i in x_jason['users']:
 					username = i["username"]
@@ -643,7 +643,7 @@ class instagram:
 				if 'pengikut' in menudump:
 					maxid=x_jason['next_max_id']
 					for z in range (9999):
-						x=s.get('https://i.instagram.com/api/v1/friendships/'+id+'/followers/?count=200&max_id='+maxid,cookies=cookie,headers={"user-agent":USN})
+						x=s.get('https://i.instagram.com/api/v1/friendships/'+id+'/followers/?count=200&max_id='+maxid,cookies=cookie,headers={"user-agent":ua_ig})
 						x_jason=json.loads(x.text)
 						try:
 							for i in x_jason['users']:
@@ -683,7 +683,7 @@ class instagram:
 				if 'mengikuti' in menudump:
 					maxid=x_jason['next_max_id']
 					for z in range (9999):
-						x=s.get('https://i.instagram.com/api/v1/friendships/'+id+'/following/?count=200&max_id='+maxid,cookies=cookie,headers={"user-agent":USN})
+						x=s.get('https://i.instagram.com/api/v1/friendships/'+id+'/following/?count=200&max_id='+maxid,cookies=cookie,headers={"user-agent":ua_ig})
 						x_jason=json.loads(x.text)
 						try:
 							for i in x_jason['users']:
@@ -713,7 +713,7 @@ class instagram:
 	def ingfoocu(self, cookie):
 		with requests.Session() as ses:
 		     try:
-		         link = ses.get(f"https://i.instagram.com/api/v1/accounts/edit/web_form_data/", headers={"user-agent":USN},cookies={"cookie":cookie}).json()["form_data"]
+		         link = ses.get(f"https://i.instagram.com/api/v1/accounts/edit/web_form_data/", headers={"user-agent":ua_ig},cookies={"cookie":cookie}).json()["form_data"]
 		         nomor = link["phone_number"].replace("-", "").replace(" ", "")
 		         tggl = link["birthday"]
 		         year, month, day = tggl.split("-")
@@ -834,7 +834,7 @@ class instagram:
 
 	def APIinfo(self,user):
 		try:
-			x=s.get("https://i.instagram.com/api/v1/users/web_profile_info/?username=%s"%(user),headers={"user-agent":USN,"x-ig-app-id":'936619743392459'})
+			x=s.get("https://i.instagram.com/api/v1/users/web_profile_info/?username=%s"%(user),headers={"user-agent":ua_ig,"x-ig-app-id":'936619743392459'})
 			x_jason=x.json()["data"]["user"]
 			nama=x_jason["full_name"]
 			pengikut=x_jason["edge_followed_by"]["count"]
